@@ -377,6 +377,12 @@ do_layout(MainWin *mw, dlist *clients, Window focus, Window leader) {
 			return clients;
 		}
 
+		if (dlist_len(tmp) == 1) {
+			printfef("(): Only one client found.");
+			dlist_free(tmp);
+			return clients;
+		}
+
 		if (leader) {
 			mw->cod = dlist_first(dlist_find_all(tmp, clientwin_check_group_leader_func, (void*)&leader));
 			dlist_free(tmp);
